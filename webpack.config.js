@@ -93,5 +93,5 @@ const TARGET = process.env.npm_lifecycle_event;
 const config = TARGET === 'build' ? buildConfig(common) : devConfig(common);
 module.exports = validate(config);
 
-// `${PATHS.style}/main.scss`, 'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000'
+//`${PATHS.style}/main.scss`, 'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000'
 
