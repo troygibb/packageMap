@@ -15,8 +15,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 const TARGET = process.env.npm_lifecycle_event;
-console.log(TARGET);
-if (TARGET === 'start') {
+process.env.PWD = process.cwd();
+
+if (TARGET === 'devStart') {
 	const compiler = webpack(webpackConfig);
 	app.use(webpackDevMiddleware(compiler, {
 	  hot: true,
@@ -34,7 +35,7 @@ if (TARGET === 'start') {
 }
 
 const port = process.env.PORT || 3000;
-//app.use(express.static(path.join(__dirname, 'build'));
+app.use(express.static(path.join(process.env.PWD, 'build')));
 
 requestHandler(app);
 
