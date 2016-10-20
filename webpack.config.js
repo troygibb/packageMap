@@ -2,6 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const validate = require('webpack-validator');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 const PATHS = {
   app: path.join(__dirname, 'client'),
@@ -57,20 +58,26 @@ const common = {
 };
 
 const buildConfig = (previousConfig) => {
-  return Object.assign({}, previousConfig);
+  return Object.assign({}, previousConfig, {
+    plugins: [
+      ...previousConfig.plugins, 
+      new CleanWebpackPlugin([PATHS.build], {
+        root: process.cwd()
+      })
+    ]
+  });
 };
 
 const devConfig = (previousConfig) => {
   return Object.assign({}, previousConfig, {
     entry: {
       app: [
-      `${PATHS.app}/app.jsx`, 'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000',
-      `${PATHS.style}/main.scss`, 'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000'
+      `${PATHS.app}/app.jsx`, 'webpack-hot-middleware/client?reload=true',
       ],
     },
     output: {
       path: PATHS.build,
-      filename: '[name].[hash].js',
+      filename: '[name].js',
     },
     devtool: 'source-map',
     plugins: [
@@ -85,3 +92,6 @@ const devConfig = (previousConfig) => {
 const TARGET = process.env.npm_lifecycle_event;
 const config = TARGET === 'build' ? buildConfig(common) : devConfig(common);
 module.exports = validate(config);
+
+// `${PATHS.style}/main.scss`, 'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000'
+
