@@ -4,7 +4,6 @@ import uuid from 'uuid';
 export default class DataCircles extends React.Component {
 	constructor(props) {
 		super(props);
-		
 	}
 	renderCircles(node, i) {
     const circleProps = {
@@ -27,9 +26,10 @@ export default class DataCircles extends React.Component {
     );
 	};
 	render() {
+		const circles = this.props.dataArray.map((node, i) => this.renderCircles(node, i));
 		return (
 			<g>
-				{this.props.dataArray.map((node, i) => this.renderCircles(node, i))}
+				{ circles }
 			</g>
 		)
 	}

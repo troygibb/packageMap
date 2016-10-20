@@ -15,6 +15,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 const TARGET = process.env.npm_lifecycle_event;
+
 process.env.PWD = process.cwd();
 
 if (TARGET === 'devStart') {

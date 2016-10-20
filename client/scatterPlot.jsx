@@ -24,7 +24,6 @@ export default class ScatterPlot extends React.Component {
 	    .range([props.height - props.padding, props.padding]);
 	}
 	render() {
-		console.log(this.props);
 		const props = this.props;
 		const scales = { xScale: this.xScale(props), yScale: this.yScale(props) };
 	  return (
