@@ -11,6 +11,8 @@ const PATHS = {
   vendor: path.join(__dirname, 'client'),
 };
 
+process.env.PWD = process.cwd();
+
 const common = {
   target: 'web',
   entry: {
@@ -62,7 +64,7 @@ const buildConfig = (previousConfig) => {
     plugins: [
       ...previousConfig.plugins, 
       new CleanWebpackPlugin([PATHS.build], {
-        root: process.cwd()
+        root: process.env.PWD
       })
     ]
   });
