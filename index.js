@@ -39,7 +39,8 @@ const port = process.env.PORT || 3000;
 
 console.log('************environment is ', process.env.PWD);
 
-app.use(express.static(path.join(process.env.PWD, 'build')));
+app.get('/', (req, res) => res.sendFile(path.join(process.env.PWD, 'build/index.html')))
+//app.use(express.static(path.join(process.env.PWD, 'build')));
 
 requestHandler(app);
 
