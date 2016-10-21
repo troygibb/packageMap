@@ -36,6 +36,9 @@ if (TARGET === 'devStart') {
 }
 
 const port = process.env.PORT || 3000;
+
+console.log('************environment is ', process.env.PWD);
+
 app.use(express.static(path.join(process.env.PWD, 'build')));
 
 requestHandler(app);
