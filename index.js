@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
+const fs = require('fs');
 
 const webpack = require('webpack');
 const webpackConfig = require('./webpack.config');
@@ -38,6 +39,10 @@ if (TARGET === 'devStart') {
 const port = process.env.PORT || 3000;
 
 console.log('************environment is ', process.env.PWD);
+fs.readdir(path.join(process.env.PWD, 'build'), (err, files) => {
+	if (err) throw err;
+	console.log(files);
+})
 
 app.use(express.static(path.join(process.env.PWD, 'build')));
 
