@@ -10,7 +10,6 @@ const actionHandler = {
 	'MAP-DEPENDENCIES': mapDependencies
 };
 
-
 const reducer = (state = intitialState, action) => {
   if (actionHandler[action.type]) {
     return actionHandler[action.type](state, action);

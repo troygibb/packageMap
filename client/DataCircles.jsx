@@ -44,7 +44,7 @@ export default class DataCircles extends React.Component {
 	}
 	moveCircles() {
 		d3.selectAll('circle')
-			
+			.attr('cx', ())
 	}
 	render() {
 		const circles = this.props.dependencies.map((node, i) => this.renderCircles(node, i));
