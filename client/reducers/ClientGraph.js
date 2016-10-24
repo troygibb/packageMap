@@ -1,6 +1,6 @@
-module.exports = class Graph {
-	constructor() {
-		this.storage = [];
+export default class ClientGraph {
+	constructor(array) {
+		this.storage = array;
 	}
 	set(name, edges) {
 		const newDependency = { name, edges };
@@ -15,4 +15,11 @@ module.exports = class Graph {
 		}
 		return null; 
 	}
+	mapStorage(callback) {
+		this.storage = this.storage.map(callback);
+	}
+	forEachStorage(callback) {
+		this.storage.forEach(callback);
+	}
 }
+

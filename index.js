@@ -38,18 +38,11 @@ if (TARGET === 'devStart') {
 
 const port = process.env.PORT || 3000;
 
-console.log('************environment is ', process.env.PWD);
-
-	fs.readdir(process.env.PWD, (err, files) => {
-		if (err) throw err;
-		console.log(files);
-
 app.use(express.static(path.join(process.env.PWD, 'build')));
 
 requestHandler(app);
 
 app.listen(port, () => console.log(`Listening on the magical port http://localhost:${port}`));
-	})
 
 
 

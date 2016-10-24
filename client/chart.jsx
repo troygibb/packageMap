@@ -1,44 +1,22 @@
 import React from 'react';
-
+import { connect } from 'react-redux';
 import ScatterPlot from './scatterPlot';
+import { getDependencies } from './actions/index';
 
-export default class Chart extends React.Component {
+class Chart extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = { 
-			width   : 1500,
-  		height  : 1000,
-  		padding : 30, 
-  	};
-		this.mapData = this.mapData.bind(this);
-		this.randomNum = this.randomNum.bind(this);
-	}
-	randomNum() {
-		return Math.floor(Math.random() * 1000);
-	}
-	mapData(graphArray) {
-		this.setState({
-			dataArray: graphArray.map((dataPoint) => { 
-				return {
-					name: dataPoint.name, 
-					coords: [ this.randomNum(), this.randomNum()]
-				};
-			})
-		})
 	}
 	componentWillMount() {
-		fetch('/graphDependencies').then((response) => {
-			return response.json();
-		}).then((responseJson) => {
-			this.mapData(JSON.parse(responseJson));
-		})
+		this.props.getDependencies();
 	}
 	render() {
-		if (this.state.dataArray) {
+		console.log(this.props);
+		if (this.props.dependencies) {
 			return (
 				<div>
-					<h1> Your dependencies! </h1>
-					<ScatterPlot {...this.state}/>
+					<h1> Your dependency graph! </h1>
+					<ScatterPlot {...this.props}/>
 				</div>
 			)
 		} else {
@@ -46,3 +24,14 @@ export default class Chart extends React.Component {
 		}
 	}
 }
+
+const mapStateToProps = (state) => {
+	return {
+		dependencies: state.dependencies,
+		width: state.width,
+		height: state.height,
+		padding: state.padding,
+	}
+}
+
+export default connect(mapStateToProps, { getDependencies })(Chart);

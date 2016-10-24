@@ -20,7 +20,7 @@ const cleanDependencyObject = (dependencyObject) => {
 	return result; 
 };
 
-//module.exports = (dependenciesArray) => {
+// module.exports = (dependenciesArray) => {
 	const dependenciesArray = ['request', 'body-parser'];
 	shelljs.mkdir(`client_modules${count}`);
 	shelljs.cd(`client_modules${count}`);
@@ -40,7 +40,6 @@ const cleanDependencyObject = (dependencyObject) => {
 			});
 		}
 	});
-	dependencyGraph.cleanRefs();
 	shelljs.cd('..');
 	shelljs.rm('-r', `client_modules${count}`);
 	console.log('Modified dependency graph', dependencyGraph.storage);
@@ -48,4 +47,4 @@ const cleanDependencyObject = (dependencyObject) => {
 		if (err) throw err;
 		console.log('Wrote to file!');
 	});
-//};
+// };

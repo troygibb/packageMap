@@ -75,7 +75,8 @@ const devConfig = (previousConfig) => {
   return Object.assign({}, previousConfig, {
     entry: {
       app: [
-      `${PATHS.app}/app.jsx`, 'webpack-hot-middleware/client?reload=true',
+      `${PATHS.app}/app.jsx`, 'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000',
+      `${PATHS.style}/main.scss`, 'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000'
       ],
     },
     output: {

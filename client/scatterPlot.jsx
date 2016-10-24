@@ -15,12 +15,12 @@ export default class ScatterPlot extends React.Component {
 	}
 	xScale(props) {
 	  return d3.scale.linear()
-	    .domain([0, this.xMax(props.dataArray)])
+	    .domain([0, this.xMax(props.dependencies)])
 	    .range([props.padding, props.width - props.padding * 2]);
 	}
 	yScale(props) {
 	  return d3.scale.linear()
-	    .domain([0, this.yMax(props.dataArray)])
+	    .domain([0, this.yMax(props.dependencies)])
 	    .range([props.height - props.padding, props.padding]);
 	}
 	render() {
